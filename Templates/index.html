@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Bean Classifier</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #5D3A00;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 12px;
+            width: 320px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #5D3A00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #7b4b12;
+        }
+
+        img {
+            margin-top: 20px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>☕ Coffee Bean Classifier</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required><br>
+        <input type="submit" value="Upload and Predict">
+    </form>
+
+    {% if filename %}
+        <div>
+            <h2>Prediction Result</h2>
+            <img src="{{ url_for('display_image', filename=filename) }}" width="300" alt="Uploaded coffee image">
+            <p><strong>Detected Coffee Bean:</strong> {{ label }}</p>
+            <p><strong>Confidence:</strong> {{ confidence }}</p>
+        </div>
+    {% endif %}
+
+
+</body>
+</html>
